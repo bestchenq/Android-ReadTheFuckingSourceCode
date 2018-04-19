@@ -67,27 +67,55 @@ Vue 提供一个官方命令行工具，可用于快速搭建大型单页应用�
 > // 安装依赖，不要从国内镜像 cnpm 安装(会导致后面缺了很多依赖库)<br/>
 > $ npm install
 > 
-> // 安装 vue 路由模块 vue-router 和网络请求模块 vue-resource<br/>
-> $ npm install vue-router vue-resource --save
+> // 安装 vue 路由模块 vue-router<br/>
+> $ npm install vue-router --save-dev
 > 
+> // 安装 vue 网络请求模块 vue-resource<br/>
+> $ npm install vue-resource --save-dev
+> 
+> // 安装 vue 状态管理模块 vuex<br/>
+> $ npm install vuex --save-dev
+> 
+> // 注入 `<style>` 标签将 CSS 添加到 DOM 中
+> $ npm install style-loader --save-dev
+> 
+> // 解释 `@import` 和 `url()`
+> $ npm install css-loader --save-dev
+> 
+> // 自动给 CSS 属性添加兼容不同浏览器的前缀
+> $ npm install postcss-loader precss sugarss --save-dev
+> 
+> // 支持 sass
+> $ npm install sass-loader node-sass --save-dev
+> 
+> // 转换项目中的 URL，根据配置将文件拷贝到相应路径
+> $ npm install file-loader --save
+> 
+> // 图片压缩
+> $ npm install image-webpack-loader --save-dev
+>  
 > // 启动项目<br/>
 > $ npm run dev
 
+批量安装
+
+> $ npm i vue-router vue-resource vuex style-loader css-loader postcss-loader sass-loader node-sass file-loader image-webpack-loader --save-dev
 
 ## 项目结构
 
 ```JSON
 |-ProjectName
     |-build//构建配置
-    |-dist//打包后的文件
     |-config//项目配置
+    |-dist//打包后的文件
     |-node_modules//依赖库
     |-src
         |-assets//资源文件
+            |-css
+            |-fonts
+            |-images
+            |-script
         |-components//组件
-        |-css
-        |   |-common
-        |-script
         |-app.vue
         |-main.js
     |-static
@@ -418,17 +446,503 @@ var watchExampleVM = new Vue({
 
 ## Vue 组件
 
+- 全局注册
+
+创建一个 Vue 实例：
+
+```JS
+new Vue({
+  el: '#some-element',
+  // 选项
+})
+```
+
+要注册一个全局组件，可以使用 Vue.component(tagName, options)。例如：
+
+```JS
+Vue.component('my-component', {
+  // 选项
+})
+```
+
+组件在注册之后，便可以作为自定义元素 <my-component></my-component> 在一个实例的模板中使用。注意确保在初始化根实例之前注册组件：
+
+```HTML
+<div id="example">
+  <my-component></my-component>
+</div>
+```
+
+```JS
+// 注册
+Vue.component('my-component', {
+  template: '<div>A custom component!</div>'
+})
+
+// 创建根实例
+new Vue({
+  el: '#example'
+})
+```
+
+渲染为
+
+```HTML
+<div id="example">
+  <div>A custom component!</div>
+</div>
+```
+
+- 局部注册
+
+你不必把每个组件都注册到全局。你可以通过某个 Vue 实例/组件的实例选项 components 注册仅在其作用域中可用的组件：
+
+```JS
+var Child = {
+  template: '<div>A custom component!</div>'
+}
+
+new Vue({
+  // ...
+  components: {
+    // <my-component> 将只在父组件模板中可用
+    'my-component': Child
+  }
+})
+```
+
+Prop：
+
+- 使用 Prop 传递数据
+
+组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中。
+
+子组件要显式地用 props 选项声明它预期的数据：
+
+```JS
+Vue.component('child', {
+  // 声明 props
+  props: ['message'],
+  // 就像 data 一样，prop 也可以在模板中使用
+  // 同样也可以在 vm 实例中通过 this.message 来使用
+  template: '<span>{{ message }}</span>'
+})
+```
+
+然后我们可以这样向它传入一个普通字符串：
+
+```HTML
+<child message="hello!"></child>
+```
+
+Prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是反过来不会。这是为了防止子组件无意间修改了父组件的状态，来避免应用的数据流变得难以理解。
+
+另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你不应该在子组件内部改变 prop。如果你这么做了，Vue 会在控制台给出警告。
+
+
+- [组件使用 Demo](https://github.com/jeanboydev/Vue-demo)
+
 ## Vue 路由
+
+- [Router 官方文档](https://router.vuejs.org/zh-cn/)
+
+用 Vue.js + vue-router 创建单页应用，是非常简单的。路由的作用就是管理组件，将组件(components)映射到路由(routes)，然后告诉 vue-router 在哪里渲染它们。
 
 ## Vuex
 
+- [Vuex 官方文档](https://vuex.vuejs.org/zh-cn/)
+
+官方介绍：
+
+> Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+
+当你打算开发大型单页应用（SPA），会出现多个视图组件依赖同一个状态，来自不同视图的行为需要变更同一个状态。
+
+遇到以上情况时候，你就应该考虑使用 Vuex 了，它能把组件的共享状态抽取出来，当做一个全局单例模式进行管理。这样不管你在何处改变状态，都会通知使用该状态的组件做出相应修改。
+
+```JS
+import Vue from 'vue';
+import Vuex form 'vuex';
+
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increment (state) {
+            state.count++
+        }
+    }
+})
+```
+
+以上就是一个最简单的 Vuex，每一个 Vuex 应用就是一个 store，在 store 中包含组件中的共享状态 state 和改变状态的方法（暂且称作方法）mutations。
+
+需要注意的是只能通过 mutations 改变 store 的 state 的状态，不能通过 `store.state.count = 5;` 直接更改，state 相当于对外的只读属性。
+
+使用 store.commit 方法触发 mutations 改变 state:
+
+```JS
+store.commit('increment');//改变
+
+console.log(store.state.count);//读取
+```
+
+- 在组件中使用
+
+如果希望 Vuex 状态更新，相应的 Vue 组件也得到更新，最简单的方法就是在 Vue 的 computed（计算属性）获取 state。
+
+```JS
+// Counter 组件
+const Counter = {
+    template: `<div>{{ count }}</div>`,
+    computed: {
+        count () {
+            return store.state.count;
+        }
+    }
+}
+```
+
+上面的例子是直接操作全局状态 store.state.count，那么每个使用该 Vuex 的组件都要引入。为了解决这个，Vuex 通过 store 选项，提供了一种机制将状态从根组件注入到每一个子组件中。
+
+```JS
+// 根组件
+import Vue from 'vue';
+import Vuex form 'vuex';
+
+Vue.use(Vuex);
+const app = new Vue({
+    el: '#app',
+    store,
+    components: {
+        Counter
+    },
+    template: '
+        <div class="app">
+            <counter></counter>
+        </div>
+    '
+})
+```
+
+通过这种注入机制，就能在子组件 Counter 通过 this.$store 访问：
+
+```JS
+// Counter 组件
+const Counter = {
+    template: `<div>{{ count }}</div>`,
+    computed: {
+        count () {
+            return this.$store.state.count
+        }
+    }
+}
+```
+
+
 ## 项目上线
 
-> // 打包项目<br/>
-> $ npn run build
+> // 开发环境打包<br/>
+> $ npm run dev
+> 
+> // 生产环境打包<br/>
+> $ npm run build
 
 将 dist 目录下所有文件丢到服务器就可以了。
 
+## 多页面应用
+
+为方便读取页面目录，这里使用 glob 扩展一个方法：
+
+> $ npm install glob --save-dev
+
+然后修改 webpack 的配置：
+
+```JSON
+|-ProjectName
+    |-build
+        |-utils.js//*修改文件
+        |-webpack.base.conf.js//*修改文件
+        |-webpack.dev.conf.js//*修改文件
+        |-webpack.prod.conf.js//*修改文件
+    |-config
+        |-index.js//*修改文件
+    |-dist
+    |-node_modules
+    |-src//修改目录结构
+        |-assets
+            |-css
+            |-fonts
+            |-images
+            |-script
+        |-components
+            |-index
+            |-other
+        |-pages//多页面
+            |-index
+                |-router
+                    |-index.js
+                |-index.html
+                |-index.js
+                |-index.vue
+            |-other
+                |-other.html
+                |-other.js
+                |-other.vue
+    |-static
+    |-.babelrc
+    |-package.json
+```
+
+我们需要修改的文件主要都在 `build` 目录下，分别修改：
+
+- utils.js
+
+```JS
+//...
+//保留以上内容，在最底部添加下面内容
+
+/* 这里是添加的部分 ---------------------------- 开始 */
+
+// glob是webpack安装时依赖的一个第三方模块，还模块允许你使用 *等符号,
+// 例如lib/*.js就是获取lib文件夹下的所有js后缀名的文件
+var glob = require('glob')
+// 页面模板
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+// 取得相应的页面路径，因为之前的配置，所以是src文件夹下的pages文件夹
+var PAGE_PATH = path.resolve(__dirname, '../src/pages')
+// 用于做相应的merge处理
+var merge = require('webpack-merge')
 
 
+//多入口配置
+// 通过glob模块读取pages文件夹下的所有对应文件夹下的js后缀文件，如果该文件存在
+// 那么就作为入口处理
+exports.entries = function () {
+  var entryFiles = glob.sync(PAGE_PATH + '/*/*.js')
+  var map = {}
+  entryFiles.forEach((filePath) => {
+    var filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'))
+    map[filename] = filePath
+    console.log(filePath+'-----entries------'+filename);
+  })
+  return map
+}
+
+//多页面输出配置
+// 与上面的多页面入口配置相同，读取pages文件夹下的对应的html后缀文件，然后放入数组中
+exports.htmlPlugin = function () {
+  let entryHtml = glob.sync(PAGE_PATH + '/*/*.html')
+  let arr = []
+  entryHtml.forEach((filePath) => {
+    let filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'))
+    console.log(filePath+'-----htmlPlugin------'+filename);
+    let conf = {
+      // 模板来源
+      template: filePath,
+      // 文件名称
+      filename: filename + '.html',
+      // 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
+      chunks: ['manifest', 'vendor', filename],
+      inject: true
+    }
+    if (process.env.NODE_ENV === 'production') {
+      conf = merge(conf, {
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true
+        },
+        chunksSortMode: 'dependency'
+      })
+    }
+    arr.push(new HtmlWebpackPlugin(conf))
+  })
+  return arr
+}
+/* 这里是添加的部分 ---------------------------- 结束 */
+```
+
+- webpack.base.conf.js
+
+```JS
+//...
+//以上内容不变，找到下面部分
+
+module.exports = {
+  context: path.resolve(__dirname, '../'),
+
+  /* 原来内容 ---------------- 开始 */
+  // entry: {
+  //   app: './src/index.js'
+  // },
+  /* 原来内容 ---------------- 结束 */
+
+  /* 修改部分 ---------------- 开始 */
+  entry: utils.entries(),
+  /* 修改部分 ---------------- 结束 */
+  output: {
+    path: config.build.assetsRoot,
+    filename: '[name].js',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
+  },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+    }
+  },
+  module: {
+    //不变部分省略 ...
+  },
+  node: {
+    //不变部分省略 ...
+  }
+}
+
+```
+
+- webpack.dev.conf.js
+
+```JS
+//...
+//以上内容不变，找到下面部分
+
+const devWebpackConfig = merge(baseWebpackConfig, {
+  module: {
+    //不变部分省略 ...
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require('../config/dev.env')
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
+    new webpack.NoEmitOnErrorsPlugin(),
+    // https://github.com/ampedandwired/html-webpack-plugin
+
+    /* 注释这个区域的文件 ------------- 开始 */
+    // new HtmlWebpackPlugin({
+    //   filename: 'index.html',
+    //   template: 'index.html',
+    //   inject: true
+    // }),
+    /* 注释这个区域的文件 ------------- 结束 */
+
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: config.dev.assetsSubDirectory,
+        ignore: ['.*']
+      }
+    ])
+    
+    /* 数组结尾添加 .concat(utils.htmlPlugin()) ------------- */
+  ].concat(utils.htmlPlugin())
+})
+
+module.exports = new Promise((resolve, reject) => {
+    //不变部分省略 ...
+})
+```
+
+- webpack.prod.conf.js
+
+```JS
+//...
+//以上内容不变，找到下面部分
+
+const webpackConfig = merge(baseWebpackConfig, {
+  module: {
+    //不变部分省略 ...
+  },
+  devtool: config.build.productionSourceMap ? config.build.devtool : false,
+  output: {
+    //不变部分省略 ...
+  },
+  plugins: [
+    //不变部分省略 ...
+
+    // generate dist index.html with correct asset hash for caching.
+    // you can customize output by editing /index.html
+    // see https://github.com/ampedandwired/html-webpack-plugin
+    
+    /* 注释这个区域的内容 ---------------------- 开始 */
+    // new HtmlWebpackPlugin({
+    //   filename: config.build.index,
+    //   template: 'index.html',
+    //   inject: true,
+    //   minify: {
+    //     removeComments: true,
+    //     collapseWhitespace: true,
+    //     removeAttributeQuotes: true
+    //     // more options:
+    //     // https://github.com/kangax/html-minifier#options-quick-reference
+    //   },
+    //   // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+    //   chunksSortMode: 'dependency'
+    // }),
+    /* 注释这个区域的内容 ---------------------- 结束 */
+
+
+    //不变部分省略 ...
+    
+    /* 数组结尾添加 .concat(utils.htmlPlugin()) ------------- */
+  ].concat(utils.htmlPlugin())
+})
+
+//不变部分省略 ...
+
+module.exports = webpackConfig
+```
+
+- config/index.js
+
+```JS
+
+//...
+//以上内容不变，找到下面部分
+
+  build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
+
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    /* 原始内容 ---------------- 开始 */
+    // assetsPublicPath: '/',
+    /* 原始内容 ---------------- 结束 */
+    
+    /* 修改部分 ---------------- 开始 */
+    assetsPublicPath: './',
+    /* 修改部分 ---------------- 结束 */
+
+    //不变部分省略 ...
+  }
+}
+
+```
+
+- 页面跳转
+
+例如跳转到 `one.html`，它会自己找到 `one.html` 这个文件。
+
+```HTML
+<a href='one.html'></a>
+```
+
+- [多页面配置 Demo](https://github.com/jeanboydev/Vue-demo/tree/develop-multiple)
+
+## 参考资料
+
+- [使用 vue-cli 开发多页面应用的最简示例](https://segmentfault.com/a/1190000013399847)
+- [用vue构建多页面应用](https://segmentfault.com/a/1190000011265006)
 

@@ -17,7 +17,7 @@
 
 # 目录
 
-## 面试知识点整理
+## 基础知识
 
 - [Java 基础知识](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/interview/Java-基础知识.md)
 - [Android 基础知识](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/interview/Android-基础知识.md)
@@ -25,10 +25,60 @@
 - [数据结构与算法](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/interview/数据结构与算法.md)
 - [人事相关问题](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/interview/人事相关问题.md)
 
-## 网络通信知识
+## 网络通信
 
 - [一篇文章看明白 TCP/IP，TCP，UDP，IP，Socket 之间的关系](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/http/TCP_IP_UDP_Socket.md)
 - [一篇文章看明白 HTTP，HTTPS，SSL/TSL 之间的关系](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/http/HTTP_HTTPS_SSL_TSL.md)
+
+## 深入理解 Java 虚拟机
+
+- [JVM 内存分配机制](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/JVM/JVM-内存分配机制.md)
+- [JVM 垃圾回收机制](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/JVM/JVM-垃圾回收机制.md)
+
+## Android
+
+- [Android 进阶思维导图](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-思维导图.md)
+- [Android 屏幕适配全攻略](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-屏幕适配全攻略.md)
+- [一个 Demo 学会搭建 Android Studio JNI 开发环境](https://github.com/jeanboydev/Android-JNITest)
+- [一张图看明白 Android Handler 消息机制](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Handler消息机制.md)
+- [一张图看明白 Android Activity 生命周期](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity生命周期.md)
+- [一篇文章看明白 Android Activity 启动模式 & IntentFilter匹配规则](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity启动模式&IntentFilter匹配规则.md)
+- [一篇文章学会使用 Android IPC 多进程](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-IPC多进程.md)
+- :+1: [一篇文章了解相见恨晚的 Android Binder 进程间通讯](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Binder进程间通讯.md)
+- :+1: [一篇文章看明白 Android 系统启动时都干了什么](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-系统启动过程.md)
+- :+1: [一篇文章看明白 Android 从点击应用图标到界面显示的过程](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity启动过程.md)
+- :+1: [一篇文章看明白 Activity 与 Window 与 View 之间的关系](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity与Window与View之间的关系.md)
+- :+1: [一篇文章看明白 Android 图形系统 Surface 与 SurfaceFlinger 之间的关系](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-SurfaceFlinger图形系统.md)
+- :+1: [一篇文章看明白 Android Service 启动过程](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Service启动过程.md)
+- [Windows 环境下载 Android 源码](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Windows环境下载源码.md)
+- [Android 反编译指南](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-反编译指南.md)
+- [Android 多渠道打包最佳实践](https://github.com/jeanboydev/Android-Flavors)
+- :+1: [Android 项目架构探索](https://github.com/jeanboydev/Android-Architecture)
+- :+1: [Android 性能优化 - UI优化](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-性能优化-UI优化.md)
+- :+1: [Android 性能优化 - 内存优化](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-性能优化-内存优化.md)
+- [Android Studio 3.x 升级指南](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Android_Studio3升级指南.md)
+- [*Android Broadcast 启动过程]
+- [*Android ContentProvider 启动过程]
+- [*Android App 自动化测试]
+- [*Android Gradle 构建系统]
+- [*Android PackageManagerService 分析]
+- [*Android PowerManagerService 分析]
+- [*Android Input 系统]
+
+## 前端
+
+- [前端发展简史](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-发展简史.md)
+- [浏览器渲染机制](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-浏览器渲染机制.md)
+- [JavaScript 运行原理 & V8 引擎分析](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-JavaScript运行原理_V8引擎分析.md)
+- [响应式布局](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-响应式布局.md)
+- [小程序原理解析](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-小程序.md)
+- [Webpack 入门](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-Webpack入门.md)
+- [Vue 入门](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-Vue入门.md)
+- [Vue 加入 Bootstrap 和 jQuery](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-Vue&BootStrap&jQuery.md)
+
+## Git
+
+- [Git 常用命令](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/git/Git常用命令.md)
 
 ## 数据结构与算法
 
@@ -40,48 +90,6 @@
 - 图
 - 查找
 - 排序
-
-## Git
-
-- [Git 常用命令](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/git/Git常用命令.md)
-
-## 深入理解 Java 虚拟机
-
-- [JVM 内存分配机制](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/JVM/JVM-内存分配机制.md)
-- [JVM 垃圾回收机制](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/JVM/JVM-垃圾回收机制.md)
-
-## Android
-
-- [Android 屏幕适配全攻略](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-屏幕适配全攻略.md)
-- [一个 Demo 学会搭建 Android Studio JNI 开发环境](https://github.com/jeanboydev/Android-JNITest)
-- [一张图看明白 Android Handler 消息机制](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Handler消息机制.md)
-- [一张图看明白 Android Activity 生命周期](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity生命周期.md)
-- [一篇文章看明白 Android Activity 启动模式 & IntentFilter匹配规则](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity启动模式&IntentFilter匹配规则.md)
-- [一篇文章学会使用 Android IPC 多进程](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-IPC多进程.md)
-- :+1:[一篇文章了解相见恨晚的 Android Binder 进程间通讯](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Binder进程间通讯.md)
-- :+1:[一篇文章看明白 Android 系统启动时都干了什么](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-系统启动过程.md)
-- :+1:[一篇文章看明白 Android 从点击应用图标到界面显示的过程](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity启动过程.md)
-- :+1:[一篇文章看明白 Activity 与 Window 与 View 之间的关系](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Activity与Window与View之间的关系.md)
-- :+1:[一篇文章看明白 Android 图形系统 Surface 与 SurfaceFlinger 之间的关系](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-SurfaceFlinger图形系统.md)
-- :+1:[一篇文章看明白 Android Service 启动过程](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Service启动过程.md)
-- [Windows 环境下载 Android 源码](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-Windows环境下载源码.md)
-- [Android 反编译指南](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-反编译指南.md)
-- [Android 多渠道打包最佳实践](https://github.com/jeanboydev/Android-Flavors)
-- :+1:[Android 项目架构探索](https://github.com/jeanboydev/Android-Architecture)
-- :+1:[Android 性能优化 - UI优化](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-性能优化-UI优化.md)
-- :+1:[Android 性能优化 - 内存优化](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/android/Android-性能优化-内存优化.md)
-- [*Android Broadcast 启动过程]
-- [*Android ContentProvider 启动过程]
-- [*Android App 自动化测试]
-- [*Android Gradle 构建系统]
-- [*Android PackageManagerService 分析]
-- [*Android PowerManagerService 分析]
-- [*Android Input 系统]
-
-## 前端
-
-- [Webpack 入门](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-Webpack入门.md)
-- [Vue 入门](https://github.com/jeanboydev/Android-ReadTheFuckingSourceCode/blob/master/web_front/WebFront-Vue入门.md)
 
 ## 设计模式
 
